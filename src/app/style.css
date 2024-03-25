@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Futura Hv';
-    src: url('./Font/FuturaBT-Heavy.woff2') format('woff2'),
-        url('./Font/FuturaBT-Heavy.woff') format('woff');
+    src: url('./font/FuturaBT-Heavy.woff2') format('woff2'),
+        url('./font/FuturaBT-Heavy.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -9,8 +9,8 @@
   
   @font-face {
     font-family: 'Futura Md';
-    src: url('./Font/FuturaBT-Medium.woff2') format('woff2'),
-        url('./Font/FuturaBT-Medium.woff') format('woff');
+    src: url('./font/FuturaBT-Medium.woff2') format('woff2'),
+        url('./font/FuturaBT-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
