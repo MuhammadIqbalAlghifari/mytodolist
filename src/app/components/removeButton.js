@@ -8,7 +8,7 @@ export default function RemoveButton({ id }) {
         const confirmed = confirm("Are you sure?");
 
         if (confirmed) {
-            const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
+            const res = await fetch(`https://mytodolist-rouge.vercel.app/api/topics?id=${id}`, {
                 method: "DELETE",
             });
 
