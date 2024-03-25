@@ -35,7 +35,7 @@ export default function TopicList({ topics }) {
     }, [])
 
     return (
-        <main className="bg-[#f5f5f5] flex flex-col md:px-6 px-10 justify-center w-full pt-24 items-center gap-4">
+        <main className="bg-[#f5f5f5] flex flex-col md:px-6 px-10 justify-center w-full py-24 items-center gap-4">
             <h1 ref={tittleItem} className="lg:text-4xl md:text-2xl text-xl py-4" style={{fontFamily: 'Futura Md'}}>My To Do List</h1>
             <article ref={todolistData} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-x-5 gap-y-5 mx-auto">
                 {topics && topics.length > 0 ? (
