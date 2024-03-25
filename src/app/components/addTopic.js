@@ -23,7 +23,7 @@ export default function AddTopic() {
         }
 
         try {
-            const res = await fetch("https://mytodolist-rouge.vercel.app/api/topics", {
+            const res = await fetch("/api/topics", {
                 method: "POST",
                 body: JSON.stringify({ tittle, description, date, status })
             });

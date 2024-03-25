@@ -2,7 +2,7 @@
 
 export const getTopics = async () => {
     try {
-        const res = await fetch("https://mytodolist-rouge.vercel.app/api/topics", {
+        const res = await fetch("/api/topics", {
             cache: "no-store"
         });
 
