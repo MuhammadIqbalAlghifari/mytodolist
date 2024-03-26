@@ -21,7 +21,7 @@ export default function EditTopicForm({ id, tittle, description, startDate, dead
         e.preventDefault()
         try {
 
-            const res = await fetch(`http://mytodolist-rouge.vercel.app/api/topics/${id}`, {
+            const res = await fetch(`https://mytodolist-rouge.vercel.app/api/topics/${id}`, {
                 method: "PUT",
                 body: JSON.stringify({ newTittle, newDescription, newStartDate, newDeadline, newStatus })
             });
@@ -62,7 +62,7 @@ export default function EditTopicForm({ id, tittle, description, startDate, dead
     return (
         <main className="px-6 py-6 bg-[#f5f5f5]" style={{fontFamily: 'Futura Md'}}>
 
-            <h1 ref={el => {tittleItem = el}} className="lg:text-4xl md:text-2xl text-xl py-4 text-center">Change status to completed or not completed</h1>
+            <h1 ref={el => {tittleItem = el}} className="lg:text-4xl md:text-2xl text-xl py-4 text-center">Edit topic</h1>
 
             <form ref={formItem} onSubmit={handleSubmit} className="flex bg-[#1c1c1c] rounded-lg shadow-lg shadow-black w-full flex-col justify-center items-start gap-4 px-6 py-6 my-10">
 
