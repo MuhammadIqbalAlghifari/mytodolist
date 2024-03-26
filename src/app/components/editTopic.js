@@ -6,40 +6,38 @@ import { easeOut } from "framer-motion";
 import gsap from "gsap";
 import Link from "next/link";
 
-export default function AddTopic() {
+export default function EditTopicForm({ id, tittle, description, startDate, deadline, status }) {
 
     const router = useRouter()
-    const [tittle, setTittle] = useState("");
-    const [description, setDescription] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [deadline, setDeadline] = useState("");
-    const [status, setStatus] = useState("");
-    let tittleItem, formItem, ButtonItem = useRef()
+    const [newTittle, setNewTittle] = useState(tittle);
+    const [newDescription, setNewDescription] = useState(description);
+    const [newStartDate, setNewStartDate] = useState(startDate);
+    const [newDeadline, setNewDeadline] = useState(deadline);
+    const [newStatus, setNewStatus] = useState(status);
+    let tittleItem, ButtonItem = useRef()
+    const formItem = useRef()
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if(!tittle || !description || !startDate || !deadline || !status) {
-            alert('Tittle, description, date and status are required')
-            return;
-        }
-
+        e.preventDefault()
         try {
-            const res = await fetch("/api/topics", {
-                method: "POST",
-                body: JSON.stringify({ tittle, description, startDate, deadline, status })
+
+            const res = await fetch(`http://mytodolist-rouge.vercel.app/api/topics/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({ newTittle, newDescription, newStartDate, newDeadline, newStatus })
             });
 
-            if(res.ok) {
-                router.push("/todolist");
-                router.refresh();
-            } else {
-                throw Error('Failed To Create A topic');
-            }
-        } catch (error) {
-            console.log(error);
-        }
+            if (!res.ok) {
 
+                throw new Error("Error cok aokoawkoakwoka")
+                
+            } 
+
+            router.push("/todolist")
+            router.refresh()
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
@@ -64,16 +62,15 @@ export default function AddTopic() {
     return (
         <main className="px-6 py-6 bg-[#f5f5f5]" style={{fontFamily: 'Futura Md'}}>
 
-            <h1 ref={el => {tittleItem = el}} className="lg:text-4xl md:text-2xl text-xl py-4 text-center">Add to do list topic</h1>
+            <h1 ref={el => {tittleItem = el}} className="lg:text-4xl md:text-2xl text-xl py-4 text-center">Change status to completed or not completed</h1>
 
-            <form ref={el => {formItem = el}} onSubmit={handleSubmit} className="flex bg-[#1c1c1c] rounded-lg shadow-lg shadow-black w-full flex-col justify-center items-start gap-4 px-6 py-6 my-10">
+            <form ref={formItem} onSubmit={handleSubmit} className="flex bg-[#1c1c1c] rounded-lg shadow-lg shadow-black w-full flex-col justify-center items-start gap-4 px-6 py-6 my-10">
 
                 <h1 className="md:text-lg text-md text-white">Title</h1>
 
                 <input 
-                onChange={(e) => setTittle(e.target.value)}
-                value={tittle}
-                autoComplete="off"
+                onChange={(e) => setNewTittle(e.target.value)}
+                value={newTittle}
                 type="text" 
                 className="w-full h-12 bg-white text-black border-none px-6 border rounded-md" 
                 placeholder="Tittle"/>
@@ -81,9 +78,8 @@ export default function AddTopic() {
                 <h1 className="md:text-lg text-md text-white">Description</h1>
 
                 <input 
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                autoComplete="off"
+                onChange={(e) => setNewDescription(e.target.value)}
+                value={newDescription}
                 type="text" 
                 className="w-full h-12 bg-white text-black border-none px-6 border rounded-md" 
                 placeholder="Description"/>
@@ -91,9 +87,8 @@ export default function AddTopic() {
                 <h1 className="md:text-lg text-md text-white">Start Date</h1>
 
                 <input 
-                onChange={(e) => setStartDate(e.target.value)}
-                value={startDate}
-                autoComplete="off"
+                onChange={(e) => setNewStartDate(e.target.value)}
+                value={newStartDate}
                 type="date" 
                 className="w-full h-12 bg-white text-black border-none px-6 border rounded-md" 
                 placeholder="dd/mm/yy"/>
@@ -101,9 +96,8 @@ export default function AddTopic() {
                 <h1 className="md:text-lg text-md text-white">Deadline</h1>
 
                 <input 
-                onChange={(e) => setDeadline(e.target.value)}
-                value={deadline}
-                autoComplete="off"
+                onChange={(e) => setNewDeadline(e.target.value)}
+                value={newDeadline}
                 type="date" 
                 className="w-full h-12 bg-white text-black border-none px-6 border rounded-md" 
                 placeholder="dd/mm/yy"/>
@@ -111,18 +105,19 @@ export default function AddTopic() {
                 <h1 className="md:text-lg text-md text-white">Status</h1>
 
                 <input 
-                onChange={(e) => setStatus(e.target.value)}
-                value={status}
-                autoComplete="off"
+                onChange={(e) => setNewStatus(e.target.value)}
+                value={newStatus}
                 type="text" 
                 className="w-full h-12 bg-white text-black border-none px-6 border rounded-md" 
                 placeholder="Selesai / Belum selesai"/>
 
-                <button className="px-4 py-3 bg-red-600 rounded-md mx-auto w-full my-6 text-white" type="submit">Add</button>
+                <button className="px-4 py-3 bg-red-600 rounded-md w-full my-6 text-white" type="submit">
+                    Change
+                </button>
 
             </form>
 
-            <Link ref={el => {ButtonItem = el}} style={{fontFamily: "Futura Md"}} href="/todolist" className="flex justify-start items-center gap-2 text-lg py-4 text-center">
+            <Link ref={el => {ButtonItem = el}} href="/todolist" className="flex justify-start items-center gap-2 text-lg py-4 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
                 </svg>

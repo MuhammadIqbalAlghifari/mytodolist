@@ -4,8 +4,9 @@ const topicSchema = new Schema(
     {
         tittle: String,
         description: String,
-        date: String,
-        status: String
+        startDate: String,
+        deadline: String,
+        status: String,
     }, {
         timestamps: true
     }

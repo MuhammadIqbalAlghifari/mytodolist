@@ -60,6 +60,7 @@ export default function LogInForm() {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="off"
                     label="Email"
                     focusBorderColor="black"
                     placeholder="Email"
