@@ -1,9 +1,8 @@
 import EditTopicForm from "@/app/components/editTopic";
-import Navbar from "@/app/components/navbar";
 
 const getTopicsById = async (id) => {
     try {
-        const res = await fetch(`http://mytodolist-rouge.vercel.app/api/topics/${id}`, {
+        const res = await fetch(`https://mytodolist-rouge.vercel.app/api/topics/${id}`, {
             cache: "no-store"
         });
 
